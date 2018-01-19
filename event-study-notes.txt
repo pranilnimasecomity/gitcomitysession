@@ -1,6 +1,7 @@
 component event propagations:
 
 	-git commit successfully 
+	git push origin master - successfully
 
 	event fired
 	capture phase -  from the application root to the source component
