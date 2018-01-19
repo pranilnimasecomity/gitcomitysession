@@ -1,10 +1,12 @@
 component event propagations:
 
+	-git commit successfully 
+
 	event fired
 	capture phase -  from the application root to the source component
 	bubble phase - from the source component to the application root
 	
-	Tag
+	Tag ::
 	
 	aura:event
 	aura:registerEvent
