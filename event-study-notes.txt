@@ -1,0 +1,73 @@
+component event propagations:
+
+	event fired
+	capture phase -  from the application root to the source component
+	bubble phase - from the source component to the application root
+	
+	Tag
+	
+	aura:event
+	aura:registerEvent
+	
+	<aura:handler name="sampleComponentEvent" event="ns:eventName" action="{!c.handleComponentEvent}" phase="capture" />
+	
+	<aura:registerEvent name="sampleComponentEvent" type="c:compEvent"/>
+	<aura:handler name="sampleComponentEvent" event="c:compEvent" action="{!c.handleSampleEvent}"/>
+
+	
+	01/05/2018
+	
+	application event
+	
+	aura:method
+	
+	system events
+	
+	event reference
+		force:navigateToSObject
+		force:navigateToURL
+		force:navigateToList
+	
+	
+	Bubble event syntax
+		
+		FIRING:
+		
+		var cmpEvent = cmp.getEvent("bubblingEvent");
+        cmpEvent.fire();
+		
+		HANDLER:
+		
+		<aura:handler name="bubblingEvent" event="c:compEvent" action="{!c.handleBubbling}" includeFacets="true"/>
+		
+		EVENT DECLARTION:
+		
+		<!--c:compEvent-->
+		<aura:event type="COMPONENT">
+			<!--simple event with no attributes-->
+		</aura:event>
+		
+	APPLICATION EVENT SYNTAX:
+	
+		FIRING:
+		var appEvent = $A.get("e.c:aeEvent");
+        appEvent.setParams({
+            "message" : "An application event fired me. " +
+            "It all happened so fast. Now, I'm everywhere!" });
+        appEvent.fire();
+		
+		HANDLER:
+		<aura:handler event="c:aeEvent" action="{!c.handleApplicationEvent}"/>
+		
+		EVENT DECLARTION:
+		
+		<!--c:aeEvent-->
+		<aura:event type="APPLICATION">
+			<aura:attribute name="message" type="String"/>
+		</aura:event>
+		
+	aura:method
+		USED:
+		Use aura:method to communicate down the containment hierarchy.
+	
+	
